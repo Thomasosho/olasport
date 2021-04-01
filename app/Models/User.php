@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
     ];
 
@@ -40,4 +41,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles(){
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    public function hasAnyRoles($roles){
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+
+    public function hasAnyRole($role){
+        return null !== $this->roles()->where('name', $role)->first();
+    }
+
+    public function isAdmin()
+    {
+    return $this->role == 'admin';
+    }
+
+    public function cart(){
+        return $this->hasMany(Cart::class,'user_id', 'id');
+    }
 }

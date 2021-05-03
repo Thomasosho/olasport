@@ -737,7 +737,7 @@ section
 .home
 {
 	width: 100%;
-	height: 100vh;
+	/* height: 100vh; */
 	padding-top: 79px;
 }
 .home_slider_container
@@ -951,7 +951,7 @@ section
 }
 .product_buttons > div > div
 {
-	width: 50%;
+	width: 100%;
 	height: 100%;
 	border-top: solid 1px #ededed;
 	background: rgba(255,255,255,0);

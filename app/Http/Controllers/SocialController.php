@@ -57,7 +57,7 @@ class SocialController extends Controller
      */
     public function edit(Social $social)
     {
-        //
+        return view('social.edit', compact('social'));
     }
 
     /**
@@ -69,7 +69,13 @@ class SocialController extends Controller
      */
     public function update(Request $request, Social $social)
     {
-        //
+        $social->facebook = $request->input('facebook');
+        $social->instagram = $request->input('instagram');
+        $social->twitter = $request->input('twitter');
+        $social->youtube = $request->input('youtube');
+        $social->linkedin = $request->input('linkedin');
+        $social->save();
+        return back()->with('success', 'Successful');
     }
 
     /**

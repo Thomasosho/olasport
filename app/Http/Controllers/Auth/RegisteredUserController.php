@@ -9,6 +9,9 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
+use App\Models\Role;
 
 class RegisteredUserController extends Controller
 {
@@ -38,13 +41,27 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        Auth::login($user = User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]));
+        ]);
 
         event(new Registered($user));
+
+        $userRole = Role::select('id')->where('name', 'user')->first();
+        $user->roles()->attach($userRole);
+
+        $email = $request->email;
+        
+        $data = ([
+        'name' => $request->name,
+        'email' => $request->email,
+        ]);
+        
+        Mail::to($email)->send(new WelcomeMail($data));
+
+        Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }

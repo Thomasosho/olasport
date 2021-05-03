@@ -3,10 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\About;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,11 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //
+        $about = About::first();
+        $contact = Contact::first();
+        $address = Address::all();
+
+        return view('order', compact('about', 'contact', 'address'));
     }
 
     /**
@@ -24,7 +40,10 @@ class AddressController extends Controller
      */
     public function create()
     {
-        //
+        $about = About::first();
+        $contact = Contact::first();
+
+        return view('order', compact('about', 'contact'));
     }
 
     /**
@@ -35,7 +54,12 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $address->user_id = auth()->user()->id;
+        $address->address = $request->input('address');
+        $address->name = $request->input('name');
+        $address->phone = $request->input('phone');
+        $address->save();
+        return back()->with('success', 'Successful');
     }
 
     /**
@@ -80,6 +104,8 @@ class AddressController extends Controller
      */
     public function destroy(Address $address)
     {
-        //
+        $address->delete();
+
+        return back()->with('success', 'deleted successfully');
     }
 }

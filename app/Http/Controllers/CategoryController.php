@@ -7,6 +7,8 @@ use App\Models\Contact;
 use App\Models\Social;
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\About;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -18,7 +20,7 @@ class CategoryController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
     }
 
     /**
@@ -28,11 +30,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+        $categories = Category::paginate(10);
         $cart = User::findorfail(auth()->user()->id)->cart;
         $contact = Contact::first();
         $social = Social::first();
-        return view('category.index', compact ('category', 'cart', 'contact', 'social'));
+        return view('category.index', compact ('categories', 'cart', 'contact', 'social'));
     }
 
     /**
@@ -70,9 +72,29 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        if (auth()->user()) {
+            $categ = Category::find($id);
+            $category = Category::all();
+            $cat = Category::all();
+            $about = About::first();
+            $categories = Product::where('category_id', $categ->id)->get();
+            $contact = Contact::first();
+            $social = Social::first();
+            $cart = User::findorfail(auth()->user()->id)->cart;
+
+            return view('category.show', compact ('categ', 'about', 'category', 'cat', 'categories', 'contact', 'social', 'cart'));
+        }
+        $categ = Category::find($id);
+        $category = Category::all();
+        $cat = Category::all();
+        $about = About::first();
+        $categories = Product::where('category_id', $categ->id)->get();
+        $contact = Contact::first();
+        $social = Social::first();
+
+        return view('category.show', compact ('categ', 'about', 'category', 'cat', 'categories', 'contact', 'social'));
     }
 
     /**

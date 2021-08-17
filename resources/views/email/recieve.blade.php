@@ -1,5 +1,5 @@
 <!doctype html>
-<title>{{$data['subject']}}</title>
+<title>OLA!</title>
 <style>
   body { text-align: center; padding: 150px; }
   h1 { font-size: 50px; }
@@ -10,7 +10,7 @@
 </style>
 
 <article>
-    <h1>{{$data['subject']}}</h1>
+    <h1>OLA!</h1>
     <p>you have recieved a new order. </p>
     <p>Thank you!</p>
     <div>

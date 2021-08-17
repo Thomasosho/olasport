@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -27,6 +28,30 @@
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
+
+            <!-- Email Address -->
+            <div class="mt-4">
+                <x-label for="phone" :value="__('Phone number')" />
+
+                <x-input id="phone" class="block mt-1 w-full form-control" type="tel" name="phone" :value="old('phone')" required />
+            </div>
+
+            <script>
+                $("input[name=phone").on("blur", function(e){
+                    var myval = $(this).val();
+                
+                    if(myval.length < 11) {
+                        alert("Value must contain 11 characters.");
+                        $(this).focus();
+                    }
+                });
+            </script>
+
+            <script>
+                jQuery(document).ready(function($){
+                    $("input[name=phone]").attr("maxlength", "11");
+                });
+            </script>
 
             <!-- Password -->
             <div class="mt-4">

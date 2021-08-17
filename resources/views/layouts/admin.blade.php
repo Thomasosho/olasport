@@ -93,7 +93,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <span class="brand-text font-weight-light"> <img src="{{asset('images/logo_2.png')}}" title="Ola Sport Wears" alt="ola sport wears" style="width:20%"> OLA!</span>
+      <span class="brand-text font-weight-light"> <img src="{{asset('images/logo_2.png')}}" title="Ola Sport Wears" alt="ola sport wears" style="width:20%"> OLA! <small>feel the comfort...</small></span>
     </a>
 
     <!-- Sidebar -->

@@ -145,6 +145,8 @@
                                     <option value="large" @if($product->l) selected @endif>L</option>
                                     <option value="x-large" @if($product->xl) selected @endif>XL</option>
                                     <option value="xx-large" @if($product->xxl) selected @endif>XXL</option>
+                                    <option value="xxx-large" @if($product->xxxl) selected @endif>XXXL</option>
+                                    <option value="xxxx-large" @if($product->xxxxl) selected @endif>XXXXL</option>
                                 </select>
                             </div>
                         </div>

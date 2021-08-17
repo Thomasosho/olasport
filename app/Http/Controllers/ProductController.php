@@ -173,6 +173,14 @@ class ProductController extends Controller
         if (in_array($xxlarge, $request->input('size'))) {
             $product->xxl = 'xx-large';
         }
+        $xxxlarge = 'xxx-large';
+        if (in_array($xxxlarge, $request->input('size'))) {
+            $product->xxxl = 'xxx-large';
+        }
+        $xxxxlarge = 'xxxx-large';
+        if (in_array($xxxxlarge, $request->input('size'))) {
+            $product->xxxxl = 'xxxx-large';
+        }
         $product->save();
         return back()->with('success', 'Successful');
     }
@@ -360,6 +368,24 @@ class ProductController extends Controller
         
         if (in_array($xxlarge, $request->input('size')) == false) {
             $product->xxl = null;
+        }
+
+        $xxxlarge = 'xxx-large';
+        if (in_array($xxxlarge, $request->input('size'))) {
+            $product->xxxl = 'xxx-large';
+        }
+        
+        if (in_array($xxxlarge, $request->input('size')) == false) {
+            $product->xxxl = null;
+        }
+
+        $xxxxlarge = 'xxxx-large';
+        if (in_array($xxxxlarge, $request->input('size'))) {
+            $product->xxxxl = 'xx-large';
+        }
+        
+        if (in_array($xxxxlarge, $request->input('size')) == false) {
+            $product->xxxxl = null;
         }
 
         $product->update();

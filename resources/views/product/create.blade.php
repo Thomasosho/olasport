@@ -139,6 +139,8 @@
                                     <option value="large">L</option>
                                     <option value="x-large">XL</option>
                                     <option value="xx-large">XXL</option>
+                                    <option value="xxx-large">XXXL</option>
+                                    <option value="xxxx-large">XXXXL</option>
                                 </select>
                             </div>
                         </div>

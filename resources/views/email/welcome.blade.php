@@ -1,5 +1,5 @@
 <!doctype html>
-<title>{{$data['subject']}}</title>
+<title>OLA!</title>
 <style>
   body { text-align: center; padding: 150px; }
   h1 { font-size: 50px; }
@@ -10,7 +10,7 @@
 </style>
 
 <article>
-    <h1>{{$data['subject']}}</h1>
+    <h1>OLA!</h1>
     <p>Welcome to olasportwears.com </p>
     <p>Enjoy our fancy and excellent selection of products from our different categories.</p>
     <p>Thank you!</p>

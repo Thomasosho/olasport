@@ -53,6 +53,16 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+            <div class="items-center justify-start mt-4">
+                <p>
+                    Don't have an account?
+                </p>
+                <x-button style="background-color: #e76003;">
+                    <a href="/register">
+                        {{ __('Create Account') }}
+                    </a>
+                </x-button>
+            </div>
         </form>
     </x-auth-card>
 </x-guest-layout>
